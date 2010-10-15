@@ -4,3 +4,4 @@ class Product < ActiveRecord::Base
   validates_format_of :image_url, :with => %r{\.(gif|jpg|png)$}i,
                       :message => "はGIF,JPG,PNG画像のURLでなければなりません"
 end
+
