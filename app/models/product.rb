@@ -9,7 +9,7 @@ class Product < ActiveRecord::Base
 
   private
   def price_must_be_a_multiple_of_hundreds
-    errors.add(:price,"価格の単位の最少は100まで") if (price % 100) != 0
+    errors.add(:price,"価格の最少単位は100です。") if (price % 100) != 0
   end  
 end
 
