@@ -1,6 +1,6 @@
 class AddRecommendedToProduct < ActiveRecord::Migration
   def self.up
-    add_column :products, :recommended, :boolean
+    add_column :products, :recommended, :boolean :default => false
   end
 
   def self.down
