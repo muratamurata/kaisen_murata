@@ -1,4 +1,7 @@
 KaisenMurata::Application.routes.draw do
+  get "store/index"
+  get "store" => "store#index", :as => :store
+
   resources :shops
 
   resources :products
