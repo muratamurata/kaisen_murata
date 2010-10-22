@@ -7,7 +7,7 @@ class StoreController < ApplicationController
     @product = Product.find(params[:id])
     @cart = current_cart
     @cart.add_product(@product)
-    #redirect_to store_path, :notice => "#{@product.name}が買い物カゴに追加されました"
+    #flash[:notice] => "#{@product.name}が買い物カゴに追加されました"
   end
 
   def empty_cart

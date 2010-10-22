@@ -14,6 +14,10 @@ class Cartitem
     product.name
   end
 
+  def price
+    product.price * quantity
+  end
+
   private
   def product
     Product.find(@product_id)
@@ -28,6 +32,10 @@ class Cart
     else
       items << Cartitem.new(product)
     end
+  end
+
+  def total_price
+    @item.map (&:price).sum
   end
 
   def items
