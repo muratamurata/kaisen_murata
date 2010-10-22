@@ -51,6 +51,10 @@ body {
   font-size:130%;
 }
 
+#store .product .button_to {
+  float:right;
+}
+
 #footer {
   font-size:90%;
   text-align:center;
