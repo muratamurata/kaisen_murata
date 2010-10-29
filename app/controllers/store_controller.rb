@@ -1,31 +1,38 @@
 class StoreController < ApplicationController
+  before_filter :set_cart
+
   def index
-    @products = Product.for_sale.for_sale.paginate :page => params[:page], :per_page => 5
+    @products = Product.for_sale.for_sale.paginate :page => params[:page], :per_page => 3
   end
 
   def add_to_cart
     @product = Product.find(params[:id])
-    @cart = current_cart
     @cart.add_product(@product)
-    flash[:notice] = "#{@product.name}が買い物カゴに追加されました"
-  end
+    respond_to do |format|
+      format.js
+    end 
+    #redirect_to store_path, :notice => "#{@product.name}が買い物カゴに追加されました。" 
+ end
 
   def empty_cart
-    session[:cart] = nil 
-    redirect_to store_path, :notice => "カートは現在空です"
+    @cart.empty!
+    #redirect_to store_path, :notice => "カートは現在空です"
+    respond_to do |format|
+      format.js
+    end 
   end 
 
   def remove_item_from_cart
     product = Product.find(params[:id])
-    @cart = current_cart
-    
     @cart.remove_product(product)
- 
-    redirect_to store_path, :notice => "#{product.name}を買い物カゴから削除しました。"
+    #redirect_to store_path, :notice => "#{product.name}を買い物カゴから削除しました。"
+    respond_to do |format|
+      format.js
+    end
   end  
 
   private
-  def current_cart
-    session[:cart] ||= Cart.new
+  def set_cart
+    @cart = session[:cart] ||= Cart.new
   end
-end
+end 

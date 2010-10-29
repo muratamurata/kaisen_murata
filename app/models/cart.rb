@@ -45,4 +45,9 @@ class Cart
   def items
     @item ||= []
   end
+
+  def empty!
+    @item = nil
+  end
+  
 end
