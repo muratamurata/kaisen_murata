@@ -15,6 +15,15 @@ class StoreController < ApplicationController
     redirect_to store_path, :notice => "カートは現在空です"
   end 
 
+  def remove_item_from_cart
+    product = Product.find(params[:id])
+    @cart = current_cart
+    
+    @cart.remove_product(product)
+ 
+    redirect_to store_path, :notice => "#{product.name}を買い物カゴから削除しました。"
+  end  
+
   private
   def current_cart
     session[:cart] ||= Cart.new

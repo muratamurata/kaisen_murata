@@ -34,6 +34,10 @@ class Cart
     end
   end
 
+  def remove_product(product)
+    items.reject!{|item| item.product_id == product.id}
+  end
+
   def total_price
     @item.map (&:price).sum
   end
