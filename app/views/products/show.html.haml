@@ -4,6 +4,9 @@
   %b Name:
   = @product.name
 %p
+  %b Shop_Id:
+  = @product.shop_id 
+%p
   %b Description:
   = simple_format(@product.description)
 %p
@@ -15,6 +18,7 @@
 %p
   %b Recommended:
   = @product.recommended
+
 = link_to 'Edit', edit_product_path(@product)
-\|
+
 = link_to 'Back', products_path
