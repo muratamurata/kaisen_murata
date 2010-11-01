@@ -18,6 +18,24 @@ class StoreController < ApplicationController
     #redirect_to store_path, :notice => "#{@product.name}が買い物カゴに追加されました。" 
  end
 
+  def checkout
+    if @cart.nil? || @cart.items.empty?
+      redirect_to store_path, :notice => "カートは現在空です"
+    end  
+    @order = Order.new
+  end
+
+  def save_order
+    @order = Order.new(params[:order])
+    @order.add_line_items_from_cart(@cart)
+    if @order.save
+      @cart.empty!
+      redirect_to store_path, :notice => "ご注文ありがとうございます!!!!"
+    else
+      render checkout_path
+    end 
+  end
+
   def empty_cart
     @cart.empty!
     #redirect_to store_path, :notice => "カートは現在空です"

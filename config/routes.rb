@@ -2,10 +2,11 @@ KaisenMurata::Application.routes.draw do
   get "store/index"
   get "store" => "store#index", :as => :store
   get "store/suppliers"
+  match "store/checkout", :as => :checkout
   post "store/add_to_cart/:id" => "store#add_to_cart"
   post "store/empty_cart" => "store#empty_cart"
   post "store/remove_item_from_cart" => "store#remove_item_from_cart"
-
+  post "store/save_order", :as => :save_order
   resources :shops
 
   resources :products
