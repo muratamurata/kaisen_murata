@@ -35,4 +35,4 @@ class StoreController < ApplicationController
   def set_cart
     @cart = session[:cart] ||= Cart.new
   end
-end 
+end
