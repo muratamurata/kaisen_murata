@@ -3,16 +3,19 @@
 %table
   %tr
     %th Name
+    %th Shop_id
     %th Description
     %th Image url
     %th Price
     %th Recommended
     %th
     %th
+    %th
 
   - @products.each do |product|
     %tr
       %td= product.name
+      %td= product.shop_id
       %td= simple_format(product.description)
       %td= image_tag(product.image_url)
       %td= product.price

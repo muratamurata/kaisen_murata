@@ -2,7 +2,7 @@ class ProductsController < ApplicationController
   # GET /products
   # GET /products.xml
   def index
-    @products = Product.all.paginate :page => params[:page], :per_page => 5
+    @products = Product.recent.all.paginate :page => params[:page], :per_page => 5
 
 
     respond_to do |format|
