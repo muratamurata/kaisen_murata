@@ -1,0 +1,6 @@
+<%= @order.name %> 様
+
+ご注文ありがとうございました。
+<% @order.line_items.each do |li| %>
+  - <%= li.product.name %>
+<% end %>
