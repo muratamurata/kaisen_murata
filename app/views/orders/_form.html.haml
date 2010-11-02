@@ -1,0 +1,22 @@
+= form_for @order do |f|
+  -if @order.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@order.errors.count, "error")} prohibited this product from being saved:"
+      %ul
+        - @order.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field
+    = f.label :name, "氏名"
+    = f.text_field :name
+  .field
+    = f.label :address, "住所"
+    = f.text_area :address
+  .field
+    = f.label :email, "Ｅメール"
+    = f.text_field :email
+  .field
+    = f.label :pay_type, "支払い方法"
+    = f.select :pay_type, Order::PAYMENT_TYPES, :prompt => "---"
+  .actions
+    = f.submit "保存", :class =>  'submit'
